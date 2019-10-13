@@ -6,6 +6,13 @@ import './widgets/new_transaction.dart';
 
 void main() => runApp(MyApp());
 
+
+ //---------------------------------------------------|
+ // Has to work with showmodalBottomSheet             |
+ // Remove user_transaction                           |
+ // Use widget new_tra and tra_list in main.dart      |
+ // --------------------------------------------------|
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -37,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
         id: DateTime.now().toString()
         
         );
-        
+
 void startAddNewTransaction(BuildContext ctx) {
   showModalBottomSheet(context: ctx, builder: (_) {
     return NewTransaction();
