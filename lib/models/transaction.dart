@@ -9,5 +9,5 @@ class Transaction {
     this.title, 
     this.amount, 
     this.date
-    });
+    });  
 }
