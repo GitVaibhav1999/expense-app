@@ -49,16 +49,23 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addNewTransaction(String title, double amount) {
+  void _addNewTransaction(String title, double amount, DateTime chosenDate) {
     print('pat your back');
     final newTx = Transaction(
         title: title,
         amount: amount,
-        date: DateTime.now(),
-        id: DateTime.now().toString());
+        date: chosenDate,
+        id: DateTime.now().toString(),
+        );
     setState(() {
       _userTransactions.add(newTx);
     });
+  }
+
+  void _deleteTransaction(String id)
+  {
+    setState(() => _userTransactions.removeWhere((tx) => tx.id == id)
+    );
   }
   
 
@@ -74,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false ,
       appBar: AppBar(
         
         backgroundColor: Theme.of(context).primaryColor,
@@ -94,14 +102,15 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Container(
               padding: EdgeInsets.all(0),
-                decoration: BoxDecoration(
-                          border: Border.all(color: Colors.purpleAccent, width: 4.0),
+              margin: EdgeInsets.all(0),
+                // decoration: BoxDecoration(
+                //           border: Border.all(color: Colors.purpleAccent, width: 4.0),
                           
-                        ),
+                        // ),
               height: 200,
               child: Chart(_recentTransactions),
               ),
-              SingleChildScrollView(child: TransactionList(_userTransactions),)
+              SingleChildScrollView(child: TransactionList(_userTransactions,_deleteTransaction),)
             
           ],
         ),

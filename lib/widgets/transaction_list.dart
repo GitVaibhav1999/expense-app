@@ -3,17 +3,19 @@ import 'package:intl/intl.dart';
 
 import '../models/transaction.dart';
 
+
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
+  final Function deleteTx;
 
-  TransactionList(this.transactions);
+  TransactionList(this.transactions,this.deleteTx);
 
   @override
   Widget build(BuildContext context) {
     //
     //Widget build(BuildContext context) {
     return Container(
-        height: 450,
+        height: 470,
         child:
             transactions.isEmpty ? 
             SingleChildScrollView(child: 
@@ -26,7 +28,7 @@ class TransactionList extends StatelessWidget {
             ),
             SizedBox(height: 60,),
             Container(
-              height: 300,
+              height: 250,
             
               child: Image.asset('assets/images/waiting.png', fit: BoxFit.cover,
               )
@@ -52,28 +54,38 @@ class TransactionList extends StatelessWidget {
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.purple))),
-                    Container(
-                        padding: EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              tx.title.toString(),
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              DateFormat('yyyy-MM-dd').format(tx.date),
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: Colors.grey,
-                                fontSize: 13,
+                    Expanded(
+                          flex: 1,
+                          child: Container(
+                          padding: EdgeInsets.all(15.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                tx.title.toString(),
+                                style: TextStyle(fontWeight: FontWeight.bold),
                               ),
-                            )
-                          ],
-                        ))
-                  ]));
+                              Text(
+                                DateFormat('yyyy-MM-dd').format(tx.date),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.grey,
+                                  fontSize: 13,
+                                ),
+                              ),
+                             
+                            ],
+                          )),
+                    ),
+                         IconButton(icon: Icon(Icons.delete,color: Colors.purpleAccent),
+                         onPressed: (){
+                           deleteTx(tx.id);
+                         },),
+
+                  ],));
                 }).toList(),
               ),
+             
             ]),
           
         );
