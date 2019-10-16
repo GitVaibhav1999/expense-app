@@ -7,6 +7,7 @@ import './widgets/transaction_list.dart';
 import './models/transaction.dart';
 import './widgets/chart.dart';
 
+
 void main() => runApp(MyApp());
 
 //---------------------------------------------------|
@@ -94,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               padding: EdgeInsets.all(0),
                 decoration: BoxDecoration(
-                          border: Border.all(color: Colors.purple, width: 4.0),
+                          border: Border.all(color: Colors.purpleAccent, width: 4.0),
                           
                         ),
               height: 200,
